@@ -7,7 +7,7 @@ function optionsframework_option_name() {
 	$optionsframework_settings = get_option( 'optionsframework' );
 	$optionsframework_settings['id'] = $themename;
 	update_option( 'optionsframework', $optionsframework_settings );
-	
+
 }
 
 function optionsframework_options() {
@@ -69,7 +69,7 @@ function optionsframework_options() {
 		'desc' => '输入您的打赏介绍页面的连接，若没开启点赞打赏功能该项无效',
 		'id' => 'donate_links',
 		'type' => 'text'
-	);	
+	);
 	$options[] = array(
 		'name' => '新浪分享AppKey',
 		'desc' => '输入您的新浪分享AppKey，若留空不会影响分享功能',
@@ -97,7 +97,7 @@ function optionsframework_options() {
 		'std' => '',
 		'type' => 'textarea');
 
-	
+
 
 	$options[] = array(
 		'name' => '顶部配置',
@@ -111,7 +111,8 @@ function optionsframework_options() {
 		'class' => 'mini',
 		'options' => array(
 			'image' => '图片',
-			'color' => '颜色')
+			'color' => '颜色',
+			'canvas' => 'canvas')
 	);
 	$options[] = array(
 		'name' => '图片样式',
@@ -186,7 +187,7 @@ function optionsframework_options() {
 		'options' => array(
 			'left_side' => $imagepath . 'col-left.png',
 			'right_side' => $imagepath . 'col-right.png')
-	);	
+	);
 	$options[] = array(
 		'name' => '版权声明',
 		'desc' => '是否启用 CC BY-SA 4.0 声明',

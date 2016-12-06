@@ -11,7 +11,7 @@ require_once( get_template_directory() . '/inc/widgets.php');
  */
 require_once( get_template_directory() . '/inc/version.php' );
 $kratos_update_checker = new ThemeUpdateChecker(
-    'Kratos', 
+    'Kratos',
     'https://soft.vtrois.com/wordpress/theme/kratos/upgrade.json'
 );
 
@@ -30,17 +30,17 @@ add_filter( 'get_avatar', 'kratos_get_avatar' );
  * 加载脚本
  * @version 1.0
  * @package Vtrois
- */  
-function kratos_theme_scripts() {  
-    $dir = get_template_directory_uri(); 
-    if ( !is_admin() ) {  
-        wp_enqueue_style( 'animate-style', $dir . '/css/animate.min.css', array(), '3.5.1'); 
+ */
+function kratos_theme_scripts() {
+    $dir = get_template_directory_uri();
+    if ( !is_admin() ) {
+        wp_enqueue_style( 'animate-style', $dir . '/css/animate.min.css', array(), '3.5.1');
         wp_enqueue_style( 'awesome-style', $dir . '/css/font-awesome.min.css', array(), '4.7.0');
         wp_enqueue_style( 'bootstrap-style', $dir . '/css/bootstrap.min.css', array(), '3.3.7');
         wp_enqueue_style( 'superfish-style', $dir . '/css/superfish.min.css', array(), 'r7');
         wp_enqueue_style( 'kratos-style', $dir . '/css/kratos.min.css', array(), _KRATOS_VERSION);
         wp_enqueue_script( 'jquerys', $dir . '/js/jquery.min.js' , array(), '2.1.4');
-        wp_enqueue_script( 'easing', $dir . '/js/jquery.easing.js', array(), '1.3.0'); 
+        wp_enqueue_script( 'easing', $dir . '/js/jquery.easing.js', array(), '1.3.0');
         wp_enqueue_script( 'qrcode', $dir . '/js/jquery.qrcode.min.js', array(), _KRATOS_VERSION);
         wp_enqueue_script( 'modernizr', $dir . '/js/modernizr.js' , array(), '2.6.2');
         wp_enqueue_script( 'bootstrap', $dir . '/js/bootstrap.min.js', array(), '3.3.7');
@@ -49,8 +49,10 @@ function kratos_theme_scripts() {
         wp_enqueue_script( 'hoverIntents', $dir . '/js/hoverIntent.js', array(), 'r7');
         wp_enqueue_script( 'superfish', $dir . '/js/superfish.js', array(), '1.0.0');
         wp_enqueue_script( 'kratos', $dir . '/js/kratos.js', array(),  _KRATOS_VERSION);
-    }  
-}  
+        wp_enqueue_script( 'cav', $dir . '/js/cav.js', array(),  _KRATOS_VERSION);
+        wp_enqueue_script( 'getStart', $dir . '/js/getStart.js', array(),  _KRATOS_VERSION);
+    }
+}
 add_action('wp_enqueue_scripts', 'kratos_theme_scripts');
 
 /**
@@ -58,23 +60,23 @@ add_action('wp_enqueue_scripts', 'kratos_theme_scripts');
  * @version 1.0
  * @package Vtrois
  */
-remove_action( 'wp_head', 'feed_links', 2 );   
-remove_action( 'wp_head', 'feed_links_extra', 3 );   
-remove_action( 'wp_head', 'rsd_link' );   
-remove_action( 'wp_head', 'wlwmanifest_link' );   
-remove_action( 'wp_head', 'index_rel_link' );   
-remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );   
-remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );   
-remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );   
-remove_action( 'wp_head', 'locale_stylesheet' );   
-remove_action( 'publish_future_post', 'check_and_publish_future_post', 10, 1 );   
-remove_action( 'wp_head', 'noindex', 1 );   
-remove_action( 'wp_head', 'wp_print_head_scripts', 9 );   
-remove_action( 'wp_head', 'wp_generator' );   
-remove_action( 'wp_head', 'rel_canonical' );   
-remove_action( 'wp_footer', 'wp_print_footer_scripts' );   
-remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );   
-remove_action( 'template_redirect', 'wp_shortlink_header', 11, 0 ); 
+remove_action( 'wp_head', 'feed_links', 2 );
+remove_action( 'wp_head', 'feed_links_extra', 3 );
+remove_action( 'wp_head', 'rsd_link' );
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'index_rel_link' );
+remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
+remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+remove_action( 'wp_head', 'locale_stylesheet' );
+remove_action( 'publish_future_post', 'check_and_publish_future_post', 10, 1 );
+remove_action( 'wp_head', 'noindex', 1 );
+remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
+remove_action( 'wp_head', 'wp_generator' );
+remove_action( 'wp_head', 'rel_canonical' );
+remove_action( 'wp_footer', 'wp_print_footer_scripts' );
+remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+remove_action( 'template_redirect', 'wp_shortlink_header', 11, 0 );
 
 function disable_emojis() {
     global $wp_version;
@@ -136,7 +138,7 @@ add_filter( 'the_content', 'wpautop' , 12);
  * 友情链接功能
  * @version 1.0
  * @package Vtrois
- */  
+ */
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 
 /**
@@ -419,7 +421,7 @@ function kratos_keywords(){
         elseif( is_single() ){
             echo trim(wp_title('',FALSE)).',';
             if ( has_tag() ) {foreach((get_the_tags()) as $tag ) { echo $tag->name.','; } }
-            foreach((get_the_category()) as $category) { echo $category->cat_name.','; } 
+            foreach((get_the_category()) as $category) { echo $category->cat_name.','; }
         }
         elseif( is_search() ){ the_search_query(); }
         else{ echo trim(wp_title('',FALSE)); }
@@ -429,11 +431,11 @@ function kratos_keywords(){
  * 描述设置
  * @version 1.0
  * @package Vtrois
- */ 
+ */
 function kratos_description(){
         if( is_home() || is_front_page() ){ echo trim(kratos_option('site_description')); }
         elseif( is_category() ){ $description = strip_tags(category_description());echo trim($description);}
-        elseif( is_single() ){ 
+        elseif( is_single() ){
         if(get_the_excerpt()){
             echo get_the_excerpt();
         }else{
@@ -649,6 +651,7 @@ function kratos_active_menu_class($classes) {
 }
 add_filter('nav_menu_css_class', 'kratos_active_menu_class');
 
+
 /**
  * 文章缩略图
  * @version 1.0
@@ -656,18 +659,27 @@ add_filter('nav_menu_css_class', 'kratos_active_menu_class');
  */
 
 
-if ( function_exists( 'add_image_size' ) ){  
+if ( function_exists( 'add_image_size' ) ){
     add_image_size( 'kratos-thumb', 750);
-}  
-function kratos_blog_thumbnail() {    
-    global $post;  
+}
+function kratos_blog_thumbnail() {
+    global $post;
     $img_id = get_post_thumbnail_id();
     $img_url = wp_get_attachment_image_src($img_id,'kratos-entry-thumb');
     $img_url = $img_url[0];
     if ( has_post_thumbnail() ) {
-        echo '<a href="'.get_permalink().'"><img class="kratos-entry-thumb" src="'.$img_url.'" /></a>';  
-    } 
-}  
+        echo '<a href="'.get_permalink().'"><img class="kratos-entry-thumb" src="'.$img_url.'" /></a>';
+    }else{
+        $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+        $first_img = $matches [1] [0];
+         if(empty($first_img)){ // 既没有缩略图，文中也没有图，设置一幅默认的图片
+            $random = mt_rand(1, 10);
+            $first_img = get_bloginfo('stylesheet_directory').'/images/random/'.$random.'.jpg';
+        }
+        $img =  '<a href="'.get_permalink().'"><img class="kratos-entry-thumb" src="'.$first_img.'" /></a>';
+        echo $img;
+    }
+}
 add_filter( 'add_image_size', create_function( '', 'return 1;' ) );
 add_theme_support( "post-thumbnails" );
 
@@ -810,12 +822,12 @@ function kratos_love(){
         setcookie('love_'.$id,$id,$expire,'/',$domain,false);
         if (!$raters || !is_numeric($raters)) {
             update_post_meta($id, 'love', 1);
-        } 
+        }
         else {
             update_post_meta($id, 'love', ($raters + 1));
         }
         echo get_post_meta($id,'love',true);
-    } 
+    }
     die;
 }
 add_action('wp_ajax_nopriv_love', 'kratos_love');
@@ -828,7 +840,7 @@ add_action('wp_ajax_love', 'kratos_love');
  */
 add_filter( 'private_title_format', 'kratos_private_title_format' );
 add_filter( 'protected_title_format', 'kratos_private_title_format' );
- 
+
 function kratos_private_title_format( $format ) {
     return '%s';
 }
@@ -877,9 +889,9 @@ function kratos_comments_users($postid=0,$which=0) {
         }
         $output = array($j,$i);
         $which = ($which == 0) ? 0 : 1;
-        return $output[$which]; 
+        return $output[$which];
     }
-    return 0; 
+    return 0;
 }
 
 /**
