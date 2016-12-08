@@ -1,4 +1,10 @@
 <?php
+/**
+ * The template for Settings content control
+ *
+ * @package Vtrois
+ * @version 2.4
+ */
 
 function optionsframework_option_name() {
 
@@ -7,7 +13,7 @@ function optionsframework_option_name() {
 	$optionsframework_settings = get_option( 'optionsframework' );
 	$optionsframework_settings['id'] = $themename;
 	update_option( 'optionsframework', $optionsframework_settings );
-
+	
 }
 
 function optionsframework_options() {
@@ -31,6 +37,16 @@ function optionsframework_options() {
 		'id' => 'background_index_color',
 		'std' => '#f9f9f9',
 		'type' => 'color' );
+	$options[] = array(
+		'name' => '列表布局',
+		'desc' => '选择你喜欢的列表布局，默认显示新式列表布局',
+		'id' => "list_layout",
+		'std' => "new_layout",
+		'type' => "images",
+		'options' => array(
+			'old_layout' => $imagepath . 'old-layout.png',
+			'new_layout' => $imagepath . 'new-layout.png')
+	);
 	$options[] = array(
 		'name' => '侧边栏随动',
 		'desc' => '是否启用侧边栏小工具随动功能',
@@ -69,14 +85,31 @@ function optionsframework_options() {
 		'desc' => '输入您的打赏介绍页面的连接，若没开启点赞打赏功能该项无效',
 		'id' => 'donate_links',
 		'type' => 'text'
-	);
+	);	
 	$options[] = array(
 		'name' => '新浪分享AppKey',
 		'desc' => '输入您的新浪分享AppKey，若留空不会影响分享功能',
 		'id' => 'sina_appkey',
 		'type' => 'text'
 	);
-
+	$options[] = array(
+		'name' => '工信部备案信息',
+		'desc' => '输入您的工信部备案号，针对国际版没有备案信息栏目的功能',
+		'id' => 'icp_num',
+		'type' => 'text'
+	);	
+	$options[] = array(
+		'name' => '公安网备案信息',
+		'desc' => '输入您的公安网备案号',
+		'id' => 'gov_num',
+		'type' => 'text'
+	);	
+	$options[] = array(
+		'name' => '公安网备案连接',
+		'desc' => '输入您的公安网备案的链接地址',
+		'id' => 'gov_link',
+		'type' => 'text'
+	);
 	$options[] = array(
 		'name' => 'SEO配置',
 		'type' => 'heading');
@@ -97,8 +130,6 @@ function optionsframework_options() {
 		'std' => '',
 		'type' => 'textarea');
 
-
-
 	$options[] = array(
 		'name' => '顶部配置',
 		'type' => 'heading');
@@ -111,8 +142,7 @@ function optionsframework_options() {
 		'class' => 'mini',
 		'options' => array(
 			'image' => '图片',
-			'color' => '颜色',
-			'canvas' => 'canvas')
+			'color' => '颜色')
 	);
 	$options[] = array(
 		'name' => '图片样式',
@@ -146,7 +176,7 @@ function optionsframework_options() {
 		'type' => 'heading');
 	$options[] = array(
 		'name' => '文章布局',
-		'desc' => '选择你喜欢的整体布局,显示左边栏，右边栏或者不显示任何边栏。默认:显示右边栏',
+		'desc' => '选择你喜欢的整体布局（显示左边栏，右边栏）默认显示右边栏',
 		'id' => "side_bar",
 		'std' => "right_side",
 		'type' => "images",
@@ -180,14 +210,14 @@ function optionsframework_options() {
 		'type' => 'heading');
 	$options[] = array(
 		'name' => '页面布局',
-		'desc' => '选择你喜欢的整体布局,显示左边栏，右边栏或者不显示任何边栏。默认:显示右边栏',
+		'desc' => '选择你喜欢的整体布局（显示左边栏，右边栏）默认显示右边栏',
 		'id' => "page_side_bar",
 		'std' => "right_side",
 		'type' => "images",
 		'options' => array(
 			'left_side' => $imagepath . 'col-left.png',
 			'right_side' => $imagepath . 'col-right.png')
-	);
+	);	
 	$options[] = array(
 		'name' => '版权声明',
 		'desc' => '是否启用 CC BY-SA 4.0 声明',
