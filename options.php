@@ -142,7 +142,8 @@ function optionsframework_options() {
 		'class' => 'mini',
 		'options' => array(
 			'image' => '图片',
-			'color' => '颜色')
+			'color' => '颜色',
+			'canvas' => 'canvas')
 	);
 	$options[] = array(
 		'name' => '图片样式',

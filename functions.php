@@ -49,6 +49,8 @@ function kratos_theme_scripts() {
         wp_enqueue_script( 'hoverIntents', $dir . '/js/hoverIntent.js', array(), 'r7');
         wp_enqueue_script( 'superfish', $dir . '/js/superfish.js', array(), '1.0.0');
         wp_enqueue_script( 'kratos', $dir . '/js/kratos.js', array(),  _KRATOS_VERSION);
+        wp_enqueue_script( 'cav', $dir . '/js/cav.js', array(),  _KRATOS_VERSION);
+        wp_enqueue_script( 'getStart', $dir . '/js/getStart.js', array(),  _KRATOS_VERSION);
     }
 }
 add_action('wp_enqueue_scripts', 'kratos_theme_scripts');
@@ -626,7 +628,7 @@ function kratos_blog_thumbnail() {
     $img_url = $img_url[0];
     if ( has_post_thumbnail() ) {
         echo '<a href="'.get_permalink().'"><img src="'.$img_url.'" /></a>';
-    }else{
+    } else{
         $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
         $first_img = $matches [1] [0];
          if(empty($first_img)){ // 既没有缩略图，文中也没有图，设置一幅默认的图片

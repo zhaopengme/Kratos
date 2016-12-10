@@ -18,7 +18,7 @@ switch (kratos_option('background_mode')) {
 		}
 	break;
 	case 'canvas':
-		echo '<div id="container"  class="kratos-start kratos-hero-2"> <div id="anitOut" class="kratos-cover kratos-cover_2 text-center"> <div class="desc desc2 animate-box"> <h2>'. single_cat_title('', false) .'</h2> <span>'. category_description('', false) .'</span> </div> </div> </div>';
+		echo '<div id="container" class="kratos-start kratos-hero-2"> <div id="anitOut" class="kratos-cover kratos-cover_2 text-center"> <div class="desc desc2 animate-box"> <h2>'. single_cat_title('', false) .'</h2> <span>'. category_description() .'</span> </div> </div> </div>';
 	break;
 	default:
 		echo '<div class="kratos-start kratos-hero-2 kratos-post-header"><div class="kratos-overlay kratos-post" style="background:#222831"></div></div>';
